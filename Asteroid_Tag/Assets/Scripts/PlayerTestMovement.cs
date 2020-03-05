@@ -6,8 +6,9 @@ public class PlayerTestMovement : MonoBehaviour
 {
     public GameObject player;
     public Rigidbody playerRB;
+    public bool original = true;
 
-    public bool dampeners;
+    public bool dampeners = false;
     public float rotateSpeed;
     public float maxSpeed;
     public float acceleration = 10f;
@@ -17,15 +18,20 @@ public class PlayerTestMovement : MonoBehaviour
 
     public Vector3 direction;
     public Vector3 sumVector;
-    [Range(0,1)]
+    [Range(0, 1)]
     public float directionMultiplier;
     public float accelerationMultiplier;
-    public float test;
-    public TrailRenderer[] trailRenderers;
+
+    //public TrailRenderer[] trailRenderers;
+    //public Transform[] trailParents;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //trailParents = new Transform[trailRenderers.Length];
+        //for (int i = 0; i < trailParents.Length; ++i)
+        //{
+        //    trailParents[i] = trailRenderers[i].transform.parent.transform;
+        //}
     }
     private void Update()
     {
@@ -44,7 +50,7 @@ public class PlayerTestMovement : MonoBehaviour
         //playerRB.AddTorque(0f, moveHorizontal * rotateSpeed * Time.fixedDeltaTime * 100f, 0f);        
 
         float moveVertical = 0f;
-        if(Input.GetAxis("GasAxis") != 0)
+        if (Input.GetAxis("GasAxis") != 0)
         {
             //Store the current vertical input in the float moveVertical.
             moveVertical = Input.GetAxis("GasAxis");
@@ -61,17 +67,23 @@ public class PlayerTestMovement : MonoBehaviour
             playerRB.AddForce(player.transform.forward * moveVertical * acceleration * Time.deltaTime * 100f, ForceMode.Acceleration);
         }
 
-        foreach (TrailRenderer trail in trailRenderers)
-        {
-            trail.time = currentSpeed / maxSpeed;
-        }
-
-        //if (playerRB.velocity.magnitude > maxSpeed)
+        //for (int i = 0; i < trailParents.Length; ++i)
         //{
-        //    playerRB.drag = 0.5f;
+        //    if (!IsVisibleToCamera(trailParents[i]))
+        //    {
+        //        trailRenderers[i].emitting = false;
+        //    }
+        //    else
+        //    {
+        //        trailRenderers[i].emitting = true;
+        //        trailRenderers[i].time = currentSpeed / maxSpeed;
+        //    }
         //}
-
-
-        
     }
+
+    //public static bool IsVisibleToCamera(Transform transform)
+    //{
+    //    Vector3 visTest = Camera.main.WorldToViewportPoint(transform.position);
+    //    return (visTest.x >= 0 && visTest.y >= 0) && (visTest.x <= 1 && visTest.y <= 1) && visTest.z >= 0;
+    //}
 }
