@@ -478,7 +478,7 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 1, g: 1, b: 1, a: 0.7058824}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -493,9 +493,9 @@ TrailRenderer:
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
+      atime0: 1349
+      atime1: 5975
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0
@@ -503,7 +503,7 @@ TrailRenderer:
       atime7: 0
       m_Mode: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumAlphaKeys: 3
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
@@ -767,7 +767,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cockpitRenderer: {fileID: 5964956716085626865}
-  playerID: 0
+  player: {fileID: 0}
+  rb: {fileID: 3242260154070574186}
+  dampeners: 0
+  accelerationModifier: 8
+  turningSpeedModifier: 8
+  topSpeedModifier: 8
+  shipMassModifier: 8
+  drag: 0
+  currentSpeed: 0
 --- !u!1 &6334447061580088192
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +878,7 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 1, g: 1, b: 1, a: 0.7058824}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -885,9 +893,9 @@ TrailRenderer:
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
+      atime0: 1349
+      atime1: 5975
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0
@@ -895,7 +903,7 @@ TrailRenderer:
       atime7: 0
       m_Mode: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumAlphaKeys: 3
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0

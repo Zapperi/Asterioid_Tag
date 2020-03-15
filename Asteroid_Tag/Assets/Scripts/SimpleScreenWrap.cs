@@ -109,18 +109,19 @@ public class SimpleScreenWrap : MonoBehaviour
             for (int i = 0; i < trailRenderers.Length; ++i)
             {
                 GameObject newTrailGO;
-                newTrailGO = Instantiate(Resources.Load("TrailEmitter"), trailRenderers[i].transform.position, trailRenderers[i].transform.rotation, trailRenderers[i].transform.parent) as GameObject;
+                newTrailGO = Instantiate(trailRenderers[i].gameObject, trailRenderers[i].transform.position, trailRenderers[i].transform.rotation, trailRenderers[i].transform.parent) as GameObject;
                 TrailRenderer newTrail = newTrailGO.GetComponent<TrailRenderer>();
-                newTrail.time = trailRenderers[i].time;
-                newTrail.minVertexDistance = trailRenderers[i].minVertexDistance;
-                newTrail.widthMultiplier = trailRenderers[i].widthMultiplier;
-                newTrail.colorGradient = trailRenderers[i].colorGradient;
-                newTrail.numCornerVertices = trailRenderers[i].numCornerVertices;
-                newTrail.materials = trailRenderers[i].materials;
-                newTrail.emitting = false;
-                newTrail.time = 0;
+                //newTrail.widthCurve = trailRenderers[i].widthCurve;
+                //newTrail.time = trailRenderers[i].time;
+                //newTrail.minVertexDistance = trailRenderers[i].minVertexDistance;
+
+                //newTrail.colorGradient = trailRenderers[i].colorGradient;
+                //newTrail.numCornerVertices = trailRenderers[i].numCornerVertices;
+                //newTrail.materials = trailRenderers[i].materials;
+                newTrail.emitting = false;                
+                //newTrail.time = 0;
                 trailRenderers[i].transform.parent = null;
-                trailRenderers[i].autodestruct = true;
+                trailRenderers[i].autodestruct = true;                
                 trailRenderers[i] = newTrail;
             }
         }
@@ -131,8 +132,7 @@ public class SimpleScreenWrap : MonoBehaviour
         if (m_objectHasTrails)
         {
             foreach (TrailRenderer trail in trailRenderers)
-            {
-                trail.time = originalTrailTime;
+            {                
                 trail.emitting = true;
             }
         }

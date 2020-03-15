@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
 
     public event Action<int> OnShipCreated;
     /// <summary>
-    /// Event called by PlayerController script whenever a ship is created.
+    /// Send an event when ship is created.
     /// </summary>
     /// <param name="playerID">ID of the player that own's the ship.</param>
     public void ShipCreated(int playerID)
@@ -40,6 +40,37 @@ public class GameController : MonoBehaviour
         if(OnShipCreated != null)
         {
             OnShipCreated(playerID);
+        }
+    }
+
+    /// <summary>
+    /// Called whenever a player performs a Dash action. Requires playerID.
+    /// </summary>
+    public event Action<int> OnPlayerDashStart;
+    /// <summary>
+    /// Send an event when player starts a Dash action.
+    /// </summary>
+    /// <param name="playerID">ID of the player who is dashing.</param>
+    public void PlayerDashStart(int playerID)
+    {
+        if(OnPlayerDashStart != null)
+        {
+            OnPlayerDashStart(playerID);
+        }
+    }
+    /// <summary>
+    /// Called whenever a player's Dash action ends. Requires playerID.
+    /// </summary>
+    public event Action<int> OnPlayerDashEnd;
+    /// <summary>
+    /// Send an event when player ends a Dash action.
+    /// </summary>
+    /// <param name="playerID">ID of the player who's dash ends.</param>
+    public void PlayerDashEnd(int playerID)
+    {
+        if (OnPlayerDashEnd != null)
+        {
+            OnPlayerDashEnd(playerID);
         }
     }
 

@@ -10,16 +10,19 @@ public class PlayerController : MonoBehaviour
     public GameObject playerShipType;
     public PlayerMovement playerMovement;
     public Transform spawnLocation;
-    public Rigidbody playerShipRB;
-
-    [SerializeField]
-    private GameObject playerShip;
+    public ShipController playerShip;
+    public bool playerDashing;
+    public bool dashIsReady;
+    public float dashCooldown;
+    public float dashCooldownTimer;
 
     public bool playerMovementReady;
     // Start is called before the first frame update
 
     private void Start()
     {
+        GameController.instance.OnPlayerDashStart += PlayerDashStart;
+        GameController.instance.OnPlayerDashEnd += PlayerDashEnd;
         GameController.instance.players.Add(this);       
         StartCoroutine("WaitForShipCreation");
     }
@@ -30,21 +33,20 @@ public class PlayerController : MonoBehaviour
     /// <returns>Player's ship gameobject.</returns>
     public GameObject GetPlayerShip()
     {
-        return playerShip;
+        return playerShip.gameObject;
     }
 
     private IEnumerator WaitForShipCreation()
     {
+        GameObject tempShip;
         // Instantiate a ship by given ship prefab at player's spawn location.
-        playerShip = Instantiate(playerShipType, spawnLocation.position, spawnLocation.rotation, transform);
+        tempShip = Instantiate(playerShipType, spawnLocation.position, spawnLocation.rotation, transform);
         // Cache reference to the owner into the created ship.
-        playerShip.GetComponent<ShipController>().InitShip(this);
-        // Cache reference of the player's ship's Rigidbody.
-        playerShipRB = playerShip.GetComponent<Rigidbody>();
+        playerShip = tempShip.GetComponent<ShipController>().InitShip(this);
         // Enable PlayerMovement script.
         playerMovement.enabled = true;
         // Initialize player movement for this new ship.
-        playerMovement.InitializePlayerMovement(playerShip, playerShipRB, playerID);
+        playerMovement.InitializePlayerMovement(playerShip, playerID);
         // Wait until PlayerMovement has been set up. PlayerMovement script changes this boolean.
         while (!playerMovementReady)
         {
@@ -52,5 +54,37 @@ public class PlayerController : MonoBehaviour
         }
         // Send event that a Ship has been created.
         GameController.instance.ShipCreated(playerID);
+    }
+
+    private void PlayerDashStart(int id)
+    {
+        if(id == playerID)
+        {
+            dashIsReady = false;
+            playerDashing = true;
+            playerMovement.enabled = false;
+        }
+    }
+
+    private void PlayerDashEnd(int id)
+    {
+        if(id == playerID)
+        {
+            playerDashing = false;
+            playerMovement.enabled = true;
+            StartCoroutine("TriggerDashCooldown");
+        }
+    }
+
+    IEnumerator TriggerDashCooldown()
+    {
+        yield return new WaitForSeconds(dashCooldown);
+        dashIsReady = true;
+    }
+
+    private void OnDestroy()
+    {
+        GameController.instance.OnPlayerDashStart -= PlayerDashStart;
+        GameController.instance.OnPlayerDashEnd -= PlayerDashEnd;
     }
 }

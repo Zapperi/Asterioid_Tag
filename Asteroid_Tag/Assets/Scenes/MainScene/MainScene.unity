@@ -611,6 +611,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 815942225739464608, guid: 10ab5731cc5e32448bb37c63620d2ecf,
+        type: 3}
+      propertyPath: dashIsReady
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998901012715208836, guid: 10ab5731cc5e32448bb37c63620d2ecf,
+        type: 3}
+      propertyPath: playerShipType
+      value: 
+      objectReference: {fileID: 3196408883354112243, guid: 10834606853eda7419a25bf2f1dcabc7,
+        type: 3}
+    - target: {fileID: 2998901012715208836, guid: 10ab5731cc5e32448bb37c63620d2ecf,
+        type: 3}
+      propertyPath: dashCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998901012715208836, guid: 10ab5731cc5e32448bb37c63620d2ecf,
+        type: 3}
+      propertyPath: dashIsReady
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5174087923792601284, guid: 10ab5731cc5e32448bb37c63620d2ecf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -666,10 +687,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5397519052541736438, guid: 10ab5731cc5e32448bb37c63620d2ecf,
+        type: 3}
+      propertyPath: dashIsReady
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7677888808674988348, guid: 10ab5731cc5e32448bb37c63620d2ecf,
         type: 3}
       propertyPath: m_Name
       value: Players
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776902348287659969, guid: 10ab5731cc5e32448bb37c63620d2ecf,
+        type: 3}
+      propertyPath: dashIsReady
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10ab5731cc5e32448bb37c63620d2ecf, type: 3}
@@ -734,6 +765,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025660330234173082, guid: 9bdbf75dfd43541429ab4f7135123c6d,
+        type: 3}
+      propertyPath: m_Mass
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 6025660330234173084, guid: 9bdbf75dfd43541429ab4f7135123c6d,
         type: 3}
